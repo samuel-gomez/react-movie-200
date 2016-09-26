@@ -12,12 +12,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Home from './Home';
 
-import { Router, Route, IndexRouter, hashHistory } from 'react-router';
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 
 
 const Main = (
     <Router history={hashHistory}>
-        <Route path="/" component={App}/>
+        <Route path="/" component={App}>
+            <IndexRoute component={Home}/>
+            <Route path="home" component={Home}/>
+        </Route>
     </Router>
 );
 

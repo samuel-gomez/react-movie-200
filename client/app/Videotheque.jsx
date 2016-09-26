@@ -79,6 +79,7 @@ export default class Videotheque extends React.Component {
         const childrenProps = {
             onMovieFormSaved : this.addMovie.bind(this),
             onMovieDeletion : this.onMovieDeletion.bind(this),
+            onMovieModification : this.onMovieModification.bind(this)
         };
         const children = this.props.children ? React.cloneElement( this.props.children, childrenProps ) : null;
 

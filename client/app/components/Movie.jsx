@@ -2,7 +2,7 @@ import React from 'react';
 import _     from 'lodash';
 
 import MovieForm from './MovieForm';
-import * as MovieApi from './api/MovieApi';
+import * as MovieApi from '../api/MovieApi';
 
 export default class Movie extends React.Component {
 

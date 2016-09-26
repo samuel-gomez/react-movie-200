@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import SearchBar        from './SearchBar';
-import * as MovieApi    from './api/MovieApi';
+import * as MovieApi    from '../api/MovieApi';
 
 export default class Videotheque extends React.Component {
 

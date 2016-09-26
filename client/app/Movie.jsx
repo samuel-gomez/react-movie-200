@@ -108,9 +108,9 @@ export default class Movie extends React.Component {
 
     render() {
         return (
-            <li className="col-md-12" onClick={this.onSelect.bind(this)}>
+            <div className="col-md-12" onClick={this.onSelect.bind(this)}>
                 {this.state.editing ? this.renderForm() : this.renderContent()}
-            </li>
+            </div>
         );
     }
 }

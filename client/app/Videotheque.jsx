@@ -77,7 +77,8 @@ export default class Videotheque extends React.Component {
         const content = loadingMovies ? this.renderLoading() : filteredMovies.map( this.renderMovieListItem.bind( this ) );
 
         const childrenProps = {
-            onMovieFormSaved : this.addMovie.bind(this)
+            onMovieFormSaved : this.addMovie.bind(this),
+            onMovieDeletion : this.onMovieDeletion.bind(this),
         };
         const children = this.props.children ? React.cloneElement( this.props.children, childrenProps ) : null;
 

@@ -76,6 +76,11 @@ export default class Videotheque extends React.Component {
 
         const content = loadingMovies ? this.renderLoading() : filteredMovies.map( this.renderMovieListItem.bind( this ) );
 
+        const childrenProps = {
+            onMovieFormSaved : this.addMovie.bind(this)
+        };
+        const children = this.props.children ? React.cloneElement( this.props.children, childrenProps ) : null;
+
         return (
             <div>
                 <header className="page-header">
@@ -88,7 +93,7 @@ export default class Videotheque extends React.Component {
                     {content}
                 </ul>
                 <div className="col-md-8">
-                    {this.props.children}
+                    {children}
                 </div>
             </div>
         );

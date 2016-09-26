@@ -54,7 +54,6 @@ export default class MovieForm extends React.Component {
     }
 
     render() {
-        const cancelBtn = this.props.edition ? <button className="btn btn-danger pull-right" onClick={this.props.onCancel}>Cancel</button> : false;
         const saveButton = this.renderSaveButton();
         return (
             <form className="form-horizontal" onSubmit={this.onSubmit.bind(this)}>

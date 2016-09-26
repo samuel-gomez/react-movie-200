@@ -3,6 +3,9 @@ import { Link } from 'react-router';
 
 import SearchBar        from './SearchBar';
 import * as MovieApi    from '../api/MovieApi';
+import MoviesStore      from '../stores/MoviesStore';
+import * as MoviesActionCreator from '../actions/MoviesActionCreator';
+
 
 export default class Videotheque extends React.Component {
 
@@ -16,14 +19,20 @@ export default class Videotheque extends React.Component {
         searchKey : ''
     };
 
+    updateMovies = () => {
+        this.setState( { movies: MoviesStore.state.movies } );
+    };
+
     componentWillMount() {
-        this.setState({
-            loadingMovies: true
-        });
-        MovieApi.getMovieList().then(movies => this.setState({
-            movies,
-            loadingMovies: false
-        }));
+        MoviesStore.addChangeListener(this.updateMovies);
+    }
+
+    componentDidMount() {
+        MoviesActionCreator.fetchMovies();
+    }
+
+    componentWillUnmount() {
+        MoviesStore.removeChangeListener(this.updateMovies);
     }
 
     onMovieDeletion(movieId) {

@@ -10,8 +10,16 @@ import React    from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './App';
+import Home from './Home';
 
-// Faire le routing ici
+import { Router, Route, IndexRouter, hashHistory } from 'react-router';
 
 
-ReactDOM.render(<App />, document.getElementById('main'));
+const Main = (
+    <Router history={hashHistory}>
+        <Route path="/" component={App}/>
+    </Router>
+);
+
+
+ReactDOM.render(Main, document.getElementById('main'));

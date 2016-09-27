@@ -9,10 +9,6 @@ import * as MoviesActionCreator from '../actions/MoviesActionCreator';
 
 export default class Videotheque extends React.Component {
 
-    static contextTypes = {
-        router : React.PropTypes.object
-    };
-
     state = {
         movies : [],
         loadingMovies : false
@@ -34,30 +30,6 @@ export default class Videotheque extends React.Component {
         MoviesStore.removeChangeListener(this.updateMovies);
     }
 
-    addMovie(movie) {
-        MovieApi.addMovie(movie).then(movie => {
-            const newMovieList = this.state.movies.concat([movie]);
-
-            this.setState({
-                movies : newMovieList
-            });
-
-            this.context.router.push('/movies');
-        });
-    }
-
-    onMovieModification(newData) {
-        MovieApi.updateMovie(newData).then(() => {
-            const newMovieList = this.state.movies.map( movie => movie.id === newData.id ? newData : movie );
-
-            this.setState({
-                movies : newMovieList
-            });
-
-            this.context.router.push('/movies');
-        });
-    }
-
     renderMovieListItem(movie) {
         return (
             <li className="list-group-item" key={movie.id}>
@@ -77,12 +49,6 @@ export default class Videotheque extends React.Component {
 
         const content = loadingMovies ? this.renderLoading() : movies.map( this.renderMovieListItem.bind( this ) );
 
-        const childrenProps = {
-            onMovieFormSaved : this.addMovie.bind(this),
-            onMovieModification : this.onMovieModification.bind(this)
-        };
-        const children = this.props.children ? React.cloneElement( this.props.children, childrenProps ) : null;
-
         return (
             <div>
                 <header className="page-header">
@@ -95,7 +61,7 @@ export default class Videotheque extends React.Component {
                     {content}
                 </ul>
                 <div className="col-md-8">
-                    {children}
+                    {this.props.children}
                 </div>
             </div>
         );

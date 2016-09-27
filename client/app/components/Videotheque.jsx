@@ -34,17 +34,6 @@ export default class Videotheque extends React.Component {
         MoviesStore.removeChangeListener(this.updateMovies);
     }
 
-    onMovieDeletion(movieId) {
-        MovieApi.removeMovie(movieId).then(() => {
-            const filteredMovieList = this.state.movies.filter(movie => movie.id !== movieId);
-            this.setState({
-                movies : filteredMovieList
-            });
-
-            this.context.router.push('/movies');
-        });
-    }
-
     addMovie(movie) {
         MovieApi.addMovie(movie).then(movie => {
             const newMovieList = this.state.movies.concat([movie]);
@@ -90,7 +79,6 @@ export default class Videotheque extends React.Component {
 
         const childrenProps = {
             onMovieFormSaved : this.addMovie.bind(this),
-            onMovieDeletion : this.onMovieDeletion.bind(this),
             onMovieModification : this.onMovieModification.bind(this)
         };
         const children = this.props.children ? React.cloneElement( this.props.children, childrenProps ) : null;

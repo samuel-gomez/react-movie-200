@@ -39,6 +39,10 @@ export default class Movie extends React.Component {
         }
     }
 
+    deleteMovie() {
+        MoviesActionCreator.deleteMovie(this.props.params.id);
+    }
+
     findMovie() {
         MoviesActionCreator.findMovie(this.props.params.id);
     }
@@ -74,7 +78,7 @@ export default class Movie extends React.Component {
                 <button className="btn btn-default" onClick={this.openEditionForm.bind(this)}>
                     <i className="glyphicon glyphicon-pencil" />
                 </button>
-                <button className="btn btn-danger" onClick={() => this.props.onMovieDeletion(data.id)}>
+                <button className="btn btn-danger" onClick={() => this.deleteMovie(data.id)}>
                     <i className="glyphicon glyphicon-trash"/>
                 </button>
             </div>

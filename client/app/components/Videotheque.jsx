@@ -34,15 +34,12 @@ export default class Videotheque extends React.Component {
         };
     }
 
-    updateMovies = () => {
-        this.setState( { movies: MoviesStore.state.movies } );
+    updateMovies = (storeState) => {
+        this.setState( { movies: storeState.movies } );
     };
 
     componentWillMount() {
         MoviesStore.addChangeListener(this.updateMovies);
-    }
-
-    componentDidMount() {
         MoviesActionCreator.fetchMovies();
     }
 

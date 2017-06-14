@@ -3,14 +3,16 @@ import actionTypes from '../actions/ActionTypes';
 import { EventEmitter } from 'events';
 
 
-const state = {};
+let state = {
+    movies: []
+};
 
 class MovieStore extends EventEmitter {
 
     get state() { return state; }
 
-    emitChange() {
-        this.emit( 'change' );
+    emitChange(data) {
+        this.emit( 'change', data );
     }
 
     addChangeListener(callback) {
@@ -33,10 +35,8 @@ dispatcher.register(function (action) {
             state.movies = action.movies;
             break;
         default:
-            return true;
+            return;
     }
 
-    store.emitChange();
-
-    return true;
+    store.emitChange(state);
 });
